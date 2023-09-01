@@ -4,6 +4,48 @@ import {useState} from 'react';
 
 function Surveypage() {
 
+    const newInfo = {
+        'firstname':'',
+        'lastname':'',
+        'email':'',
+        'interest':'false'
+    };
+
+    const [info, setInfo] = useState(newInfo);
+
+    const handleChange = (e)=>{
+        e.preventDefault();
+
+        const {name, value} = e.target;
+
+        setInfo((prev)=>{
+            return (
+                {...prev,
+                [name]:value}
+            )
+        });
+    
+    }
+
+    const create = async()=>{
+        await fetch('http://127.0.0.1:8090/api/collections/survey/records',
+        {
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body: JSON.stringify({
+                ...info
+            })
+        }
+        );
+
+        setNote(newNote);
+        router.refresh();
+
+
+    };
+
     const formFields = [
         {
             'label':'first name',
@@ -22,7 +64,9 @@ function Surveypage() {
     return (
         <div>
             <h1>Please fill out the survey for a chance to win $100 giftcard!</h1>
-            <form className='flex flex-col justify-center items-center'>
+            <form className='flex flex-col justify-center items-center border-white'
+            onSubmit={create}
+            >
                 {
                     formFields.map((field,i)=>{
                         return (
@@ -32,6 +76,8 @@ function Surveypage() {
                                 {field.label}
                                 <input type='text'
                                 name={field.input_name}
+                                onChange={handleChange}
+                                className='text-black'
                                 />
                             </label>
                         )
@@ -39,11 +85,14 @@ function Surveypage() {
                 }
                 <label>
                 <input
-                type='checkbox'
+                type='radio'
+                name='interest'
+                onChange={handleChange}
+                value={true}
                 />
                     are you interested in tech event?
                 </label>
-
+                <button type='submit'>Submit</button>
             </form>
         </div>
     )
