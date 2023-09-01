@@ -10,31 +10,47 @@ function Gamepage() {
     const [show, setShow] = useState([]);
 
     const addShow = (num)=>{
-        setShow(prev=> [...prev, rules[num]] )
-    }
-
-    const checkPass = (current)=>{
-        if (password.length < 5){
-            addShow(0);
+        
+        const currentRule = show[num];
+        if(show.length && currentRule.add){
+            return;
+        } else {
+            //set show state for that rule to be true
+            setShow(prev=> [...prev,
+                {...rules[num], 
+                add:true}
+            ] )
         }
+    };
+
+    const createCheck = (str)=> {return new RegExp(str)};
+
+    const updateState = (num,bool)=>{
+        setShow((prev)=>[...prev,show[num].done=[bool]]);
+    };
+
+    const check = (num,str)=>{
+        if (show.length) {
+            const answer = createCheck(show[num].answers);
+            console.log('ans',answer)
+            //check 
+            return answer.test(str)
+        } 
 
     }
 
     const handleChange = (e)=>{
         e.preventDefault();
-
-        checkPass();
-
+        addShow(0);
+        
         const value = e.target.value; 
+        
+        console.log(check(0,value));
 
-        setPassword((prev)=>{
-            return (
-                prev + value
-            )
-        })
+        setPassword(value)
 
         console.log(password)
-    }
+    };
 
     return (
         <div className='flex flex-col justify-center items-center'>
@@ -46,9 +62,9 @@ function Gamepage() {
             className='rounded-md h-8 text-black'
             onChange={handleChange}
             />
-            {show.length > 0 ? show.map((r,i)=>{
+            {show.length ? show.map((r,i)=>{
                 return(
-                    <p key={i} className='text-white'>{r.rule}</p>
+                    <p key={i} className={`${ show.length && show[i].done ? 'text-green-500':'text-red-500'}`}>{r.rule}</p>
                 )
             }):<p></p>}
         </div>
