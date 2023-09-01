@@ -7,14 +7,23 @@ import {rules} from '../data/rules';
 function Gamepage() {
 
     const [password, setPassword] = useState('');
+    const [show, setShow] = useState([]);
+
+    const addShow = (num)=>{
+        setShow(prev=> [...prev, rules[num]] )
+    }
 
     const checkPass = (current)=>{
-
+        if (password.length < 5){
+            addShow(0);
+        }
 
     }
 
     const handleChange = (e)=>{
         e.preventDefault();
+
+        checkPass();
 
         const value = e.target.value; 
 
@@ -37,6 +46,11 @@ function Gamepage() {
             className='rounded-md h-8 text-black'
             onChange={handleChange}
             />
+            {show.length > 0 ? show.map((r,i)=>{
+                return(
+                    <p key={i} className='text-white'>{r.rule}</p>
+                )
+            }):<p></p>}
         </div>
     )
 }
