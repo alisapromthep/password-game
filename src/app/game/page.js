@@ -9,7 +9,7 @@ function Gamepage() {
 
     const [password, setPassword] = useState('');
     const [show, setShow] = useState([]);
-    const [currentIndex, setCurrentId] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [oneValidate, setOneValidate] = useState(false);
     const [twoValidate, setTwoValidate] = useState(false);
     const [threeValidate, setThreeValidate] = useState(false);
@@ -27,15 +27,15 @@ function Gamepage() {
         
     // },[currentId] )
 
-    const addShow = (id)=>{
+    const addShow = (i)=>{
         
-        if(show.length && show[id].add){
+        if(show.length && show[i].add){
             return;
         } else {
             //set show state for that rule to be true
             setShow(prev=> [
-                {...rules[id], 
-                add:true, ...prev}
+                {...rules[i], 
+                add:true}, ...prev
             ] )
         }
     };
@@ -55,9 +55,9 @@ function Gamepage() {
                 //check 
                 const checkResult = answer.test(str);
                 if(checkResult && r.done === false){
-                    setCurrentId((prev)=> prev+1);
-                    updateState(i,checkResult)
-                    
+                    setCurrentIndex((prev)=> prev+1);
+                    updateState(i,checkResult);
+                    addShow(currentIndex);
                 }
             })
         } 
