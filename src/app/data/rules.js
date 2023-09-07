@@ -54,13 +54,7 @@ export const rules = [
     'add':false,
     'done':false,
 },
-{
-    'id':10,
-    'rule':'must contain a number in the citric acid pH range',
-    'answers':'([3-6])',
-    'add':false,
-    'done':false,
-},
+
 // {
 //     'id':9,
 //     'rule':'numbers must add up to 32',
