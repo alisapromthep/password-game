@@ -54,7 +54,7 @@ function Gamepage() {
                 const answer = createCheck(r.answers);
                 //check 
                 const checkResult = answer.test(str);
-                if(checkResult && r.done === false){
+                if(checkResult && !r.add && !r.done){
                     setCurrentIndex((prev)=> prev+1);
                     updateState(i,checkResult);
                 } 
