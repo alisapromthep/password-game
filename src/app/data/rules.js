@@ -8,14 +8,14 @@ export const rules = [
 {
     'id':2,
     'rule':'must contain 2 capital letter',
-    'answers':'(\w*[A-Z]\w*[A-Z]\w*)',
+    'answers':'(.*[A-Z].*[A-Z])',
     'add':false,
     'done':false,
 },
 {
     'id':3,
     'rule':'must contain at least 2 numbers',
-    'answers':[0-9],
+    'answers':'(.*[0-9]+.*[0-9]+)',
     'add':false,
     'done':false,
 },

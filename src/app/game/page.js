@@ -22,25 +22,20 @@ function Gamepage() {
 
     
 
-    // useEffect(()=>{
-    //     console.log('use effect', currentIndex)
-    //     addShow(currentIndex)
+    useEffect(()=>{
+        console.log('use effect', currentIndex)
+        addShow(currentIndex)
 
         
-    // },[currentIndex] )
+    },[currentIndex] )
 
     const addShow = (i)=>{
-        console.log('show', show)
-        console.log('index in addShow',i);
-        if(show.length === i-1){
-            return;
-        } else {
-            //set show state for that rule to be true
-            setShow(prev=> [
-                {...rules[i], 
-                add:true}, ...prev
-            ] )
-        }
+
+        setShow(prev=> [
+            {...rules[i], 
+            add:true}, ...prev
+        ] )
+
     };
 
     const createCheck = (str)=> {return new RegExp(str)};
@@ -74,7 +69,6 @@ function Gamepage() {
     const handleChange = (e)=>{
         e.preventDefault();
         const value = e.target.value; 
-        addShow(currentIndex);
         
         
         const checkResult = check(value);
