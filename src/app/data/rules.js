@@ -54,7 +54,6 @@ export const rules = [
     'add':false,
     'done':false,
 },
-{test test}
 
 // {
 //     'id':9,
