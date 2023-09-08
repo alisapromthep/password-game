@@ -54,7 +54,7 @@ function Gamepage() {
                 const answer = createCheck(r.answers);
                 //check 
                 const checkResult = answer.test(str);
-                if(checkResult && !r.add && !r.done){
+                if(checkResult && !r.done){
                     setCurrentIndex((prev)=> prev+1);
                     updateState(i,checkResult);
                 } 
@@ -71,8 +71,7 @@ function Gamepage() {
         const value = e.target.value; 
         
         
-        const checkResult = check(value);
-        //console.log(checkResult);
+        check(value);
 
         setPassword(value)
     };
