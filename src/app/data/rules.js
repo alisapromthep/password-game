@@ -28,7 +28,7 @@ export const rules = [
 },
 {
     'id':5,
-    'rule':'must contain perodic symbol of two main elements in the air',
+    'rule':'must contain periodic symbol of two main elements in the air',
     'answers':'(.*N.*O)',
     'add':false,
     'done':false
